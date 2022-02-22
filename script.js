@@ -6,10 +6,7 @@ let previous = document.querySelector("#previous");
 let pageNumber = 1;
 let buttonclick = 0;
 let elementNo = document.querySelector("#resultgrid");
-let fixedColor = inputColor.value
 let form = document.querySelector('form');
-
-
 
 form.onsubmit = event => {
     event.preventDefault();
@@ -49,6 +46,7 @@ async function SearchPhotos() {
     }
 }
 async function ManipulateDOM(data){
+    let fixedColor = inputColor.value
     if (data.totalHits == 0) {
         const thisTitle = document.createElement("li");
         thisTitle.innerHTML = "No results found";
@@ -69,10 +67,12 @@ async function ManipulateDOM(data){
             }
             else {
                 if (fixedColor != inputColor.value) {
-                        inputColor.value = fixedColor;
+                    inputColor.value = fixedColor;
                 }
                 pageNumber++;
                 document.querySelector("#resultgrid").innerHTML = ""
+                let data = SearchPhotos();
+                ManipulateDOM(await data);
             }
         }
         else {
@@ -93,4 +93,4 @@ async function ManipulateDOM(data){
             ManipulateDOM(await data);
         }
     }
-};
+}
