@@ -7,6 +7,12 @@ let pageNumber = 1;
 let buttonclick = 0;
 let elementNo = document.querySelector("#resultgrid");
 
+let form = document.querySelector('form');
+
+form.onsubmit = event => {
+    event.preventDefault();
+}
+
 exeButton.onclick = function (event) {
     document.querySelector("#resultgrid").innerHTML = ""
     buttonclick++;
